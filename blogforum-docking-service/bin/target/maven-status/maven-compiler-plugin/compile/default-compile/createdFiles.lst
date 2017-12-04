@@ -1,0 +1,8 @@
+com\blogforum\docking\service\mail\impl\AttachmentsMailSend.class
+com\blogforum\docking\service\mail\impl\HtmlMailSend.class
+com\blogforum\docking\service\mail\impl\SimpleMailSend.class
+com\blogforum\docking\service\mail\MailSend.class
+com\blogforum\docking\service\sms\impl\VerificationSmsSend.class
+com\blogforum\docking\service\mail\impl\AbstractMailSend.class
+com\blogforum\docking\service\sms\impl\AbstractSmsSend.class
+com\blogforum\docking\service\sms\SmsSend.class
