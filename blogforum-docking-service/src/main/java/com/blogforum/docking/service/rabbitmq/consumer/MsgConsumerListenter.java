@@ -22,7 +22,6 @@ public class MsgConsumerListenter implements ChannelAwareMessageListener {
 	public void onMessage(Message message, Channel channel) throws Exception {
 		try {
 			
-
 			//获取消息名 通过消息名找到对应的执行bean
 			String exchange = message.getMessageProperties().getReceivedExchange();
 			String beanName = MsgExchangeNameEnum.getBeanNameByExchangeName(exchange);

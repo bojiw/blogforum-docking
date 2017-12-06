@@ -29,6 +29,7 @@ public class VerificationSmsHandler implements Handler {
 	@Override
 	public void doHandler(Message message, String messageInfo) {
 
+		
 		VerificationSmsVO verificatioin = JSON.parseObject(messageInfo, VerificationSmsVO.class);
 		String phoneNumber = verificatioin.getIphoneNumber();
 		String verificationCode = verificatioin.getVerificationCode();
