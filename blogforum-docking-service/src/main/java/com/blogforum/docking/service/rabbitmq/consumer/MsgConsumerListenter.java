@@ -46,6 +46,7 @@ public class MsgConsumerListenter implements ChannelAwareMessageListener {
 			//channel.basicReject(message.getMessageProperties().getDeliveryTag(), false);
 		}catch(JSONException e){
 			logger.error("消息转换失败,非法参数:" + message.toString(),e);
+			channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
 		}catch (Exception e) {
 			//TODO因为还没找到rabbitmq无限重试的处理方案 所以暂时采用打印日志处理
 			logger.error("消息处理失败:" + message.toString(),e);

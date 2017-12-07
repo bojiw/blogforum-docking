@@ -31,6 +31,7 @@ public class VerificationMailHandler implements Handler {
 		String subject = mailVO.getSubject();
 		//效验参数
 		checkValue(mail, mailInfo, subject, message,messageInfo);
+		logger.info(mail + mailInfo + subject);
 		//发送短信
 		mailSend.send(mail, subject, mailInfo, null);
 		
