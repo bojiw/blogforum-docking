@@ -8,11 +8,11 @@
 	http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit-1.4.xsd">
     <description>rabbitmq 连接服务配置</description>
     <!-- 连接配置 -->
-    <rabbit:connection-factory id="connectionFactory" host="${mq.host}" username="${mq.username}" password="${mq.password}" port="${mq.port}"  virtual-host="${mq.vhost}"/>
+    <rabbit:connection-factory  id="connectionFactory" host="${mq.host}" username="${mq.username}" password="${mq.password}" port="${mq.port}"  virtual-host="${mq.vhost}"/>
     <rabbit:admin connection-factory="connectionFactory"/>
 
     <!-- spring template声明-->
-    <rabbit:template exchange="amqpExchange" id="amqpTemplate" mandatory="true"  connection-factory="connectionFactory" message-converter="jsonMessageConverter" />
+    <rabbit:template exchange="amqpExchange"  id="amqpTemplate" mandatory="true"  connection-factory="connectionFactory" message-converter="jsonMessageConverter" />
 
     <!-- 消息对象json转换类 -->
     <bean id="jsonMessageConverter" class="org.springframework.amqp.support.converter.Jackson2JsonMessageConverter" />  
@@ -26,7 +26,8 @@
 	<rabbit:queue id="docking_verification_mail_queue" name="docking_verification_mail_queue" durable="true" auto-delete="false" exclusive="false" />
 	<!-- 接收验证码短信队列 -->
 	<rabbit:queue id="docking_verification_sms_queue" name="docking_verification_sms_queue" durable="true" auto-delete="false" exclusive="false" />
-	
+	<!-- 图片转文字 -->
+	<rabbit:queue id="docking_image_conver_string"  name="docking_image_conver_string" durable="true" auto-delete="false" exclusive="false"></rabbit:queue>
 	
 	<!-- 绑定sso的短信验证码交换机 -->
 	<rabbit:fanout-exchange  name="sso_fanout_verification_sms" durable="true" auto-delete="false">
@@ -41,14 +42,28 @@
 	    </rabbit:bindings>
 	</rabbit:fanout-exchange>
 	
+	<!-- 绑定note的图片转文字交换机 -->
+	<rabbit:direct-exchange  name="direct_image_conver_string_docking" durable="true" auto-delete="false">
+	    <rabbit:bindings>
+	        <rabbit:binding  queue="docking_image_conver_string"  key="key_image_conver_string_docking"></rabbit:binding>
+	    </rabbit:bindings>
+	</rabbit:direct-exchange>
+	
+	
 	<!-- 监听配置
 		 queues：监听的队列，多个的话用逗号（,）分隔 
 		 ref：监听器
 		 acknowledge:manual 手动设置回调
 	 -->
-	<rabbit:listener-container connection-factory="connectionFactory"  acknowledge="manual">
-	    <rabbit:listener queues="docking_verification_mail_queue" ref="msgConsumerListenter"/>
+	<rabbit:listener-container  connection-factory="connectionFactory"   acknowledge="manual">
+	    <rabbit:listener  queues="docking_verification_mail_queue"  ref="msgConsumerListenter"/>
 	    <rabbit:listener queues="docking_verification_sms_queue" ref="msgConsumerListenter"/>
+	    <rabbit:listener queues="docking_image_conver_string" ref="msgConsumerListenter"/>
+	</rabbit:listener-container>
+	
+	<!-- 设置一次只拉取1条消息进行处理 处理以后再拉取下一条消息 -->
+	<rabbit:listener-container prefetch="1"  connection-factory="connectionFactory"   acknowledge="manual">
+	    <rabbit:listener queues="docking_image_conver_string" ref="msgConsumerListenter"/>
 	</rabbit:listener-container>
 	
 	<bean id="msgConsumerListenter" class="com.blogforum.docking.service.rabbitmq.consumer.MsgConsumerListenter">
@@ -56,6 +71,7 @@
 	        <map>
 	            <entry key="verificationSmsHandler" value-ref="verificationSmsHandler"></entry>
 	            <entry key="verificationMailHandler" value-ref="verificationMailHandler"></entry>
+	            <entry key="imageToStringHandler" value-ref="imageToStringHandler"></entry>
 	        </map>
 	    </property>
 	</bean>
@@ -66,4 +82,10 @@
 	<bean id= "verificationMailHandler" class="com.blogforum.docking.service.rabbitmq.consumer.impl.VerificationMailHandler">
 	    <property name="mailSend" ref="simpleMailSend"></property>
 	</bean>
+	
+	<bean id="imageToStringHandler" class="com.blogforum.docking.service.rabbitmq.consumer.impl.ImageToStringHandler">
+	    <property name="bdGeneralClient" ref="bdGeneralClient"></property>
+	    <property name="noteBodyServerFacadeClient" ref="noteBodyServerFacadeClient"></property>
+	</bean>
+	 
 </beans>

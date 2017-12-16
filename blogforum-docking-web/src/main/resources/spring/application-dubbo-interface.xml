@@ -25,4 +25,8 @@
     <!-- session相关接口 -->
     <dubbo:reference id="sessionServerFacade" timeout="3000" interface="com.blogforum.sso.facade.session.SessionServerFacade"/>
     
+    <!-- 更新笔记内容接口 -->
+    <dubbo:reference id="noteBodyServerFacade" timeout="3000" interface="com.blogforum.notebook.facade.note.NoteBodyServerFacade"/>
+    
+    
 </beans>

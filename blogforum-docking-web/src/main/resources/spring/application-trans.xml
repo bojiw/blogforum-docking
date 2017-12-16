@@ -36,6 +36,6 @@
 	<!-- 切面 切在service层 这样如果一个dao运行失败 可以让其他调用的dao回滚 -->
 	<aop:config>
 		<aop:advisor advice-ref="txAdvice"
-			pointcut="execution(* com.blogforum.notebook.docking..*.*(..))" />
+			pointcut="execution(* com.blogforum.docking.service..*.*(..))" />
 	</aop:config>
 </beans>

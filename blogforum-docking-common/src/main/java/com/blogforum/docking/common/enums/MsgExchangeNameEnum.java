@@ -4,7 +4,10 @@ public enum MsgExchangeNameEnum {
 
 	SSO_FANOUT_VERIFICATION_MAIL("sso_fanout_verification_mail", "verificationMailHandler", "接收用户需要发送的邮件请求"),
 	
-	SSO_FANOUT_VERIFICATION_SMS("sso_fanout_verification_sms", "verificationSmsHandler", "接收用户需要发送的手机请求");
+	SSO_FANOUT_VERIFICATION_SMS("sso_fanout_verification_sms", "verificationSmsHandler", "接收用户需要发送的手机请求"),
+	
+	DIRECT_IMAGE_CONVER_STRING_DOCKING("direct_image_conver_string_docking","imageToStringHandler","图片转文字功能");
+	
 	
 
 	/** 消息队列名称 */

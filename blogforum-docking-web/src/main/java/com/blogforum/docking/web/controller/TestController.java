@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.blogforum.docking.service.mail.MailSend;
-import com.blogforum.docking.service.sms.impl.VerificationSmsSend;
+import com.blogforum.docking.service.sms.SmsSend;
 
 @Controller
 @RequestMapping("/test")
@@ -19,7 +19,7 @@ public class TestController {
 	@Resource
 	private MailSend simpleMailSend;
 	@Resource
-	private VerificationSmsSend verificationSmsSend;
+	private SmsSend verificationSmsSend;
 
 	@RequestMapping("/mail")
 	@ResponseBody

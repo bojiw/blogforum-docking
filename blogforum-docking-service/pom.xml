@@ -26,6 +26,11 @@
 			<artifactId>blogforum-docking-integration</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.blogforum</groupId>
+			<artifactId>blogforum-notebook-facade</artifactId>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 		</dependency>

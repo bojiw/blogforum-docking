@@ -48,6 +48,12 @@
 			  <groupId>commons-collections</groupId>
 			  <artifactId>commons-collections</artifactId>
 			</dependency>
+		<!-- 百度图片识别 -->
+			<dependency>
+			    <groupId>com.baidu.aip</groupId>
+			    <artifactId>java-sdk</artifactId>
+			</dependency>
+			
 	  </dependencies>
   
 </project>

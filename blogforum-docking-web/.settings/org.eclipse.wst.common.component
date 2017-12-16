@@ -13,6 +13,9 @@
         <dependent-module archiveName="blogforum-docking-pojo-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blogforum-docking-pojo/blogforum-docking-pojo">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="blogforum-docking-facade-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blogforum-docking-facade/blogforum-docking-facade">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="blogforum-docking-integration-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/blogforum-docking-integration/blogforum-docking-integration">
             <dependency-type>uses</dependency-type>
         </dependent-module>
