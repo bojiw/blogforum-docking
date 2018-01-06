@@ -5,7 +5,7 @@ public enum DockingMsgExchangeNameEnum {
 	/**图片转文字交换机*/
 	DIRECT_IMAGE_CONVER_STRING_DOCKING("direct_image_conver_string_docking", "图片转文字交换机");
 	
-
+	// test 
 	private String	name;
 	private String	memo;
 
