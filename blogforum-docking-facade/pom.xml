@@ -11,5 +11,10 @@
 	  <groupId>org.apache.commons</groupId>
 	  <artifactId>commons-lang3</artifactId>
   	</dependency>
+  	
+	<dependency>
+		<groupId>com.blogforum</groupId>
+		<artifactId>blogforum-common</artifactId>
+	</dependency>
   </dependencies>
 </project>
