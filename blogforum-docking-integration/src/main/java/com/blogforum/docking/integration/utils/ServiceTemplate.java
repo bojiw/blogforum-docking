@@ -2,7 +2,7 @@ package com.blogforum.docking.integration.utils;
 
 import com.blogforum.common.enums.BizErrorEnum;
 import com.blogforum.common.model.Result;
-import com.blogforum.notebook.common.exception.ThirdPartyException;
+import com.blogforum.common.tools.rpc.execption.ThirdPartyException;
 
 /**
  * rpc调用统一模板类
