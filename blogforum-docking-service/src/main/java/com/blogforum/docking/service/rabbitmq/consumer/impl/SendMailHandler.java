@@ -18,8 +18,8 @@ import com.blogforum.docking.service.rabbitmq.consumer.Handler;
  * @author wwd
  *
  */
-public class VerificationMailHandler implements Handler {
-	private static Logger	logger	= LoggerFactory.getLogger(VerificationMailHandler.class);
+public class SendMailHandler implements Handler {
+	private static Logger	logger	= LoggerFactory.getLogger(SendMailHandler.class);
 
 	private MailSend		mailSend;
 

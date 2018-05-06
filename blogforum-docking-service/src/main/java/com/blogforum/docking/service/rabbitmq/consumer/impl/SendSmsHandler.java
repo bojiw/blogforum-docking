@@ -22,8 +22,8 @@ import com.blogforum.docking.service.sms.SmsSend;
  * @author wwd
  *
  */
-public class VerificationSmsHandler implements Handler {
-	private static Logger logger = LoggerFactory.getLogger(VerificationSmsHandler.class);
+public class SendSmsHandler implements Handler {
+	private static Logger logger = LoggerFactory.getLogger(SendSmsHandler.class);
 	private SmsSend smsSend;
 
 	@Override
