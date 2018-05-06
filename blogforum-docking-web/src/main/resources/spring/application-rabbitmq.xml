@@ -40,7 +40,13 @@
 	    </rabbit:queue-arguments>
 	</rabbit:queue>
 	<!-- 图片转文字 -->
-	<rabbit:queue id="docking_image_conver_string"  name="docking_image_conver_string" durable="true" auto-delete="false" exclusive="false"/>
+	<rabbit:queue id="docking_image_conver_string"  name="docking_image_conver_string" durable="true" auto-delete="false" exclusive="false">
+		<rabbit:queue-arguments>
+		    <!-- 设置死信交换机和队列 -->
+	        <entry key="x-dead-letter-exchange" value="direct_image_conver_string_docking_DLX" />  
+	        <entry key="x-dead-letter-routing-key" value="docking_image_conver_string_DLX" />  
+		</rabbit:queue-arguments>
+	</rabbit:queue>
 	
 	
 	<!-- 消费交换机 -->
